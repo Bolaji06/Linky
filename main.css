@@ -5,6 +5,7 @@
 }
 :root{
     --primary-color: rgb(7, 192, 7);
+    --hero-backgpround: aliceblue;
     --pale-black: rgb(24, 26, 24);
     --white: rgb(245, 245, 245);
     --purple: rgb(183, 11, 206);
@@ -12,23 +13,77 @@
 body{
     font-family: 'Jost', sans-serif;
 }
+
 header{
-    background-color: rgb(255, 0, 0);
+    text-align: center;
     position: fixed;
     width: 100%;
-    text-align: center;
     z-index: 9999;
-    padding: 10px 0;
+    padding: 20px 0;
+   
+}
+.logo{
+    color: var(--primary-color);
+    font-family: 'Leckerli One', Arial, Helvetica, sans-serif;
 }
 nav{
     position: absolute;
     text-align: left;
-    width: 100%;
     top: 100%;
     left: 0;
-    background-color: rgb(255, 0, 0);
-    display: none;
+    width: 100%;
+    min-height: 100vh;
+    margin-top: 30px;
+    padding-left: 1em;
+    transform: scale(1, 0);
+    transform-origin: top;
+    background-color: var(--hero-backgpround);
+    transition: transform 400ms ease-in-out;
 }
+nav ul{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+nav li{
+    padding-top: 30px;
+    margin-bottom: 1em;
+    margin-left: 1em;
+}
+nav a{
+    color: var(--pale-black);
+    text-decoration: none;
+    font-size: 1rem;
+    opacity: 0; 
+    transition: opacity 250ms ease-in-out 250ms;
+}
+nav button{
+    padding: 10px 25px;
+    font-size: 1rem;
+    border: none;
+    border: 1px solid var(--purple);
+    border-radius: 5px;
+    background-color: transparent;
+    color: var(--purple);
+    transition: .2s ease-in-out;
+}
+nav button:hover{
+    background-color: var(--purple);
+    color: var(--white);
+    transform: scale(1.04);
+}
+nav a:hover{
+    color: var(--purple);
+    border: none;
+}
+.nav-toggle:checked ~ nav{
+   transform: scale(1, 1);
+}
+.nav-toggle:checked ~ nav a{
+    opacity: 1;
+    transition: opacity 100ms ease-in-out;
+}
+
 .nav-toggle{
     display: none;
 }
@@ -36,29 +91,131 @@ nav{
     position: absolute;
     top: 0;
     left: 0;
-    margin-left: 1em;
     height: 100%;
+    margin-top: 10px;
+    margin-left: 2em;
     display: flex;
     align-items: center;
 }
-.nav-toggle-label img{
-    margin-top: 10px;
-}
-.nav-toggle:checked ~ nav{
+
+.linky-hero{
+    background-image: url(/mages/link-worldwide.jpg);
+    width: 100%;
+    height: 700px;
     display: block;
+    background-color: aliceblue;
+    background-size: cover;
 }
-nav ul{
-    list-style-type: none;
+.hero-container{
+    position: relative;
+    top: 220px;
+    padding: 1em 2em;
+    background-position: center;
 }
-nav li{
-    margin-bottom: 1em;
-    margin-left: 1em;
+.hero-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-nav a{
-    text-decoration: none;
-    font-size: 1.1rem;
-    text-transform: uppercase; 
+.hero-col1{
+    width: 60%;
+    margin-top: 50px;
+    align-self: flex-start;
 }
-nav a:hover{
-    color: green;
+.hero-col1 h1{
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    line-height: 3.5rem;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+.hero-col1 h1 span{
+    font-family: 'Leckerli One';
+    color: var(--primary-color);
+}
+.hero-col2{
+    background-image: url(/images/link-worldwide.jpg);
+    width: 50%;
+    height: 500px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    mix-blend-mode: multiply;
+
+}
+.hero-action{
+    margin-top: 30px;
+}
+.premium,
+.trial{
+    padding: 12px 20px;
+    border: none;
+    background-color: var(--purple);
+    border-radius: 5px;
+    color: var(--white);
+    font-size: 1em;
+    margin-right: 12px;
+}
+.trial{
+    border: 1px solid var(--primary-color);
+    background-color: transparent;
+    color: var(--primary-color);
+    font-size: 1em;
+}
+
+@media screen and (min-width: 900px) {
+    .nav-toggle-label{
+        display: none;
+
+    }
+    header{
+        display: grid;
+        grid-template-columns: 1fr auto minmax(600px 3fr) 1fr;
+        background-color: hsla(0, 0%, 100%, 0.418);
+        box-shadow: 10px 0px 10px rgb(179, 179, 179);
+    }
+    .logo{
+        grid-column: 2 / 1;
+    }
+    nav{
+        all: unset;
+        grid-column: 3 / 5;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-right: 40px;
+    }
+    nav ul{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        
+    }
+    nav li{
+        padding-top: 0;
+        margin-left: 2.5em;
+        margin-bottom: 0;
+    }
+    nav a{
+        position: relative;
+        opacity: 1;
+    }
+    nav a::before{
+        content: '';
+        display: block;
+        height: 2px;
+        background-color: var(--purple);
+        position: absolute;
+        top: -.65em;
+        left: 0;
+        right: 0;
+        transform: scale(0, 1);
+        transform-origin: top;
+        transition: transform ease-in-out 250ms;
+    }
+   
+    nav a:hover::before{
+        transform: scale(1, 1);
+    }
+    
 }
