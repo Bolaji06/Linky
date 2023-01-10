@@ -4,11 +4,12 @@
     padding: 0;
 }
 :root{
-    --primary-color: rgb(7, 192, 7);
+    --primary-color: #07c007;
     --hero-backgpround: aliceblue;
     --pale-black: rgb(24, 26, 24);
     --white: rgb(245, 245, 245);
     --purple: rgb(183, 11, 206);
+    --dark-gray: rgb(116, 116, 116)
 }
 body{
     font-family: 'Jost', sans-serif;
@@ -19,7 +20,8 @@ header{
     position: fixed;
     width: 100%;
     z-index: 9999;
-    padding: 20px 0;
+    padding: 18px 0;
+    background-color: var(--hero-backgpround);
    
 }
 .logo{
@@ -33,7 +35,8 @@ nav{
     left: 0;
     width: 100%;
     min-height: 100vh;
-    margin-top: 30px;
+    overflow: hidden;
+    margin-top: 0px;
     padding-left: 1em;
     transform: scale(1, 0);
     transform-origin: top;
@@ -92,7 +95,7 @@ nav a:hover{
     top: 0;
     left: 0;
     height: 100%;
-    margin-top: 10px;
+    margin-top: 8px;
     margin-left: 2em;
     display: flex;
     align-items: center;
@@ -125,6 +128,7 @@ nav a:hover{
 .hero-col1 h1{
     font-family: 'Poppins', sans-serif;
     font-size: 2.5rem;
+    padding-right: 1em;
     line-height: 3.5rem;
     font-weight: 700;
     text-transform: capitalize;
@@ -145,6 +149,7 @@ nav a:hover{
 }
 .hero-action{
     margin-top: 30px;
+    padding-bottom: 2em;
 }
 .premium,
 .trial{
@@ -155,12 +160,221 @@ nav a:hover{
     color: var(--white);
     font-size: 1em;
     margin-right: 12px;
+    transition: all ease-in-out .2s;
 }
 .trial{
     border: 1px solid var(--primary-color);
     background-color: transparent;
     color: var(--primary-color);
     font-size: 1em;
+}
+.premium:hover{
+    transform: scale(1.1);
+}
+.trial:hover{
+    background-color: var(--primary-color);
+    color: var(--white);
+    transform: scale(1.1);
+}
+.service-container{
+    padding: 1em 2em;
+}
+.service-header{
+    text-align: center;
+    padding: 4em 4em;
+    
+}
+.service-header h3{
+    margin-bottom: 8px;
+    font-size: 1.6rem;
+    color: var(--pale-black);
+}
+.service-header p{
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.2rem;
+    max-width: 800px;
+    color: var(--dark-gray);
+}
+
+.service-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.service-card{
+    border: 1px solid var(--primary-color);
+    padding: 2em 1em;
+    max-width: 380px;
+    border-radius: 18px;
+    margin-bottom: 80px;
+}
+.card-heading{
+    display: flex;
+    gap: 1em;
+    padding: 1em 1em;
+}
+.service-card p{
+    padding: 1em;
+    color: rgb(53, 53, 53);
+    font-size: 1.1rem;
+    margin-top: 10px;
+    line-height: 1.6rem;
+}
+.card-heading img{
+    width: 30px;
+    height: 30px;
+}
+.card-list-item{
+    margin-top: 2em;
+    padding: 2em 1em;
+    border-top: 1px solid rgb(221, 221, 221);
+}
+.card-list-item ul{
+    list-style-type: none;
+}
+.card-list-item h3{
+    font-size: 1rem;
+}
+.card-list-item li{
+   background-image: url(/assets/checkmark.svg);
+   background-repeat: no-repeat;
+   padding-left: 40px;
+   line-height: 1.5rem;
+   margin-top: 20px;
+}
+.card-action button, .card-action a{
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none;
+}
+.card-action button{
+    width: 100%;
+    padding: 8px;
+    border: none;
+    color: var(--white);
+    font-size: 1rem;
+    background-color: var(--purple);
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+.card-action button a{
+    color: var(--white);
+}
+.link-short-container{
+    background-color: var(--primary-color);
+    padding: 3em 4em 1em 4em;
+}
+.input-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    
+}
+.input-wrapper input{
+    width: 90%;
+    padding: 1em;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+   
+
+}
+.input-wrapper button{
+    padding: 1.13em;
+    width: 30%;
+    font-size: 1.1rem;
+    border: none;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background-color: var(--purple);
+    color: var(--white);
+    cursor: pointer;
+}
+.link-short-container p{
+    text-align: center;
+    color: rgb(78, 78, 78);
+}
+.short-link-generated{
+   
+   background-color: var(--white);
+   /*padding: 1em 1.3em;*/
+   border-radius: 5px;
+   margin-bottom: 20px;
+
+}
+.tac{
+    margin-bottom: 40px;
+}
+.error-msg{
+    color: red;
+}
+.short-gen-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 1.3em;
+}
+.short-link,
+.user-link{
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--purple);
+}
+.user-link{
+    color: var(--pale-black);
+    padding-right: 10px;
+}
+.short-link{
+    display: inline-block;
+    margin-right: 20px;
+}
+.btn-copy{
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 10px 22px;
+    background-color: #d04bf1;
+    color: var(--white);
+
+}
+.short-link-action img{
+    margin-left: 40px;
+    transform: translateY(6px);
+}
+
+
+
+
+
+@media (max-width: 1010px){
+    .hero-col1 h1{
+        font-size: 2rem;
+        line-height: 3rem;
+    }
+}
+@media (max-width: 850px){
+    .linky-hero{
+        height: 600px; 
+    }
+    .hero-row{
+        align-items: flex-start;
+    }
+    .hero-col1{
+        width: 100%;
+        margin-top: 0;
+    }
+    .hero-col1 h1{
+        font-size: 1.8rem;
+        line-height: 2.5rem;
+    }
+    .hero-col2{
+        display: none;
+    }
 }
 
 @media screen and (min-width: 900px) {
@@ -171,7 +385,7 @@ nav a:hover{
     header{
         display: grid;
         grid-template-columns: 1fr auto minmax(600px 3fr) 1fr;
-        background-color: hsla(0, 0%, 100%, 0.418);
+        background-color: var(--hero-backgpround);
         box-shadow: 10px 0px 10px rgb(179, 179, 179);
     }
     .logo{
@@ -218,4 +432,38 @@ nav a:hover{
         transform: scale(1, 1);
     }
     
+}
+@media(max-width: 950px){
+    .service-row{
+        flex-direction: column;
+    }
+    .service-card{
+        max-width: 80%;
+    }
+    .short-gen-row{
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        position: relative;
+    }
+    .short-link{
+        display: block;
+        margin-bottom: 10px;
+    }
+    .user-link{
+        margin-right: 10px;
+    }
+    .short-link-action{
+        margin-top: 10px;
+    }
+    .btn-copy{
+        width: 100%;
+    }
+    .close-gen-link{
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin-right: 12px;
+        margin-top: 8px;
+    }
 }
