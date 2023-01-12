@@ -1,14 +1,18 @@
 
 
 
+
 const shortLinkBtn = document.querySelector('.short-btn');
 const shortLinkGenerated = document.querySelector('.short-link-generated');
 const shortnerContainer = document.querySelector('.link-short-container');
 const errorMsg = document.querySelector('.error-msg');
 
+const linkArray = [];
 
+const savedLink1 = localStorage.getItem('link1') || [];
+const savedLink2 = localStorage.getItem('link2') || [];
 
-//const links = JSON.parse(localStorage.getItem('links')) || [];
+generateShortLink(savedLink1, savedLink2);
 
 
  
@@ -18,23 +22,29 @@ shortLinkBtn.addEventListener('click', ()=>{
    const inputLinkEl = document.querySelector('.input-link').value;
    const uri = ` https://api.shrtco.de/v2/shorten?url=${inputLinkEl}`;
 
-   shortnerContainer.append(shortLinkGenerated);
+   
 
-
+    
     fetch(uri).then(response => response.json())
+    
               .then((data) => {
-                generateShortLink(data.result.short_link2, data.result.original_link);
-                console.log(data.result)
+
+                const {short_link2, original_link} = data.result;
+                generateShortLink(short_link2, original_link);
+
+                localStorage.setItem('link1', short_link2);
+                localStorage.setItem('link2', original_link);
+
+                console.log(data);
 
               }).catch((error) => {
                     console.error(error);
                     errorMsg.textContent = error;
                     errorMsg.style.color = 'red';
                     });
+                    
 });
-
-
-
+//localStorage.clear();
 function generateShortLink (dataShtLink, userLink){
 
     
@@ -61,7 +71,7 @@ function generateShortLink (dataShtLink, userLink){
     const closeButton = document.createElement('img');
     closeButton.className = 'close-gen-link';
     closeButton.setAttribute('src', '/assets/close.svg');
-
+    
     shortLinkAction.appendChild(shortLink);
     shortLinkAction.appendChild(buttonCopy);
     shortLinkAction.appendChild(closeButton);
@@ -71,22 +81,17 @@ function generateShortLink (dataShtLink, userLink){
     shortGenRow.appendChild(shortLinkAction);
 
     shortLinkGenerated.appendChild(shortGenRow);
+    shortnerContainer.append(shortLinkGenerated);
 
-    closeButton.addEventListener('click', () =>{
+    closeButton.addEventListener('click', (e) =>{
         console.log('click');
+        localStorage.removeItem('link1');
+        localStorage.removeItem('link2');
+
         shortLinkGenerated.remove();
 
-        
-        if(shortLinkGenerated > 1){
-            shortLinkGenerated.array.forEach(element => {
-                shortLinkGenerated[element].remove();
-                
-            });
-        }
-        else{
-            
-        }
-    })
+       
+    });
     buttonCopy.addEventListener('click', ()=>{
         copyLinkToClipboard(dataShtLink);
 
@@ -104,12 +109,7 @@ function generateShortLink (dataShtLink, userLink){
     })
 
 }
-/*
-links.forEach(generateShortLink);
-function copyLinkToClipboard(text, el){
-    navigator.clipboard.writeText(text)
-    console.log(text);
-}*/
+
 
 
 

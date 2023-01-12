@@ -467,3 +467,8 @@ nav a:hover{
         margin-top: 8px;
     }
 }
+
+.sample-text{
+    color: black;
+    font-size: 3rem;
+}
