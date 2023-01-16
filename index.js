@@ -1,7 +1,4 @@
 
-
-
-
 const shortLinkBtn = document.querySelector('.short-btn');
 const shortLinkGenerated = document.querySelector('.short-link-generated');
 const shortnerContainer = document.querySelector('.link-short-container');
@@ -14,40 +11,41 @@ const savedLink2 = localStorage.getItem('link2') || [];
 
 generateShortLink(savedLink1, savedLink2);
 
-
- 
-
 shortLinkBtn.addEventListener('click', ()=>{
    
    const inputLinkEl = document.querySelector('.input-link').value;
    const uri = ` https://api.shrtco.de/v2/shorten?url=${inputLinkEl}`;
 
-   
+   fetchLinkDataFromAPI(uri);
+              
+});
 
-    
+function fetchLinkDataFromAPI(uri){
     fetch(uri).then(response => response.json())
     
-              .then((data) => {
+    .then((data) => {
 
-                const {short_link2, original_link} = data.result;
-                generateShortLink(short_link2, original_link);
+      const {short_link2, original_link} = data.result;
+      generateShortLink(short_link2, original_link);
 
-                localStorage.setItem('link1', short_link2);
-                localStorage.setItem('link2', original_link);
+      localStorage.setItem('link1', short_link2);
+      localStorage.setItem('link2', original_link);
 
-                console.log(data);
+      console.log(data);
 
-              }).catch((error) => {
-                    console.error(error);
-                    errorMsg.textContent = error;
-                    errorMsg.style.color = 'red';
-                    });
-                    
-});
-//localStorage.clear();
-function generateShortLink (dataShtLink, userLink){
+    }).catch((error) => {
+          console.error(error);
+          errorMsg.textContent = error;
+          errorMsg.style.color = 'red';
+          });
+}
 
-    
+function copyLinkToClipboard(text){
+    navigator.clipboard.writeText(text);
+}
+
+function generateShortLink (dataShortLink, userLink){
+
     const shortGenRow = document.createElement('div');
     shortGenRow.className = 'short-gen-row';
 
@@ -61,8 +59,8 @@ function generateShortLink (dataShtLink, userLink){
 
     const shortLink = document.createElement('a');
     shortLink.className = 'short-link';
-    shortLink.textContent = dataShtLink;
-    shortLink.setAttribute('href', dataShtLink);
+    shortLink.textContent = dataShortLink;
+    shortLink.setAttribute('href', dataShortLink);
 
     const buttonCopy = document.createElement('button');
     buttonCopy.className = 'btn-copy';
@@ -89,11 +87,10 @@ function generateShortLink (dataShtLink, userLink){
         localStorage.removeItem('link2');
 
         shortLinkGenerated.remove();
-
-       
+ 
     });
     buttonCopy.addEventListener('click', ()=>{
-        copyLinkToClipboard(dataShtLink);
+        copyLinkToClipboard(dataShortLink);
 
         setTimeout(() =>{
             buttonCopy.style.backgroundColor = 'green';

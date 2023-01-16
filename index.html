@@ -192,7 +192,69 @@
         </div>
     </section>
 
-    <section class="generate-qr-code"></section>
+    <section class="generate-qr-code">
+        <div class="qr-code-container">
+            <div class="qr-code-row">
+                <div class="qr-code-workspace">
+                        <div class="workspace-wrapper">
+                            <div class="space-center">
+                                <div class="qr-code-image">
+                                    <img class="qr-image" src="/images/qrcode.png" alt="">
+                                    <!-- <img src="https://api.qrserver.com/v1/create-qr-code/?data=HelloWorld&amp;size=200x200" alt="" title="" /> -->
+                                </div>
+
+                                <div class="qr-code-input">
+                                    <p class="workspace-heading">Enter or paste text</p>
+                                    <input class="qr-input" type="text"
+                                     placeholder="url/text/phone number">
+                                     <p class="hints">For long URL: shorten URL before creating the QR Code</p>
+                                    <button class="qr-btn">Create QR Code</button>
+
+                                </div>
+                            </div>
+                        </div>    
+
+                </div>
+
+                <div class="qr-code-preview">
+                    <h2>Generate QR Code</h2>
+                    <div class="features-wrapper">
+                        <div class="color-wrapper">
+                            <p class="color-text">Color</p>
+                            <input class="color-input" type="color">
+
+                        </div>
+
+                        <div class="qr-margin-wrapper">
+                            <p class="margin-text">Margin</p>
+                            <input type="text" class="margin-input" placeholder="Margin Number">
+                            <button class="margin-ok">
+                                Ok
+                            </button>
+                        </div>
+                        
+
+                        <div class="file-type">
+                            <p class="file-type-text">File Type</p>
+                            <select name="file-type" id="file-type">
+                                <option value="png">PNG</option>
+                                <option value="jpeg">JPEG</option>
+                                <option value="svg">SVG</option>
+                                <option value="gif">GIF</option>
+                                
+                            </select>
+                        </div>
+                    </div>
+                    <button class="download-qr-btn">Download</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>
 
     <section class="download-link-files"></section>
 
@@ -204,6 +266,7 @@
     <h1 class="sample-text"></h1>
 
     <script src="/index.js"></script>
+    <script src="/qr-code.js"></script>
     <script src="/sample.js"></script>
 </body>
 </html>
