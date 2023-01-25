@@ -431,6 +431,11 @@ nav a:hover{
     border-radius: 20px;
     cursor: pointer;
 }
+.download-link{
+    text-decoration: none;
+    color: var(--white);
+    
+}
 .margin-ok{
     padding: 6px 14px;
     background-color: var(--pale-black);
