@@ -7,19 +7,31 @@ const marginOkBtn = document.querySelector('.margin-ok');
 const inputColor = document.querySelector('#color-picker');
 const fileTypeSelect = document.querySelector('#file-type');
 const downloadBtn = document.querySelector('.download-btn');
+const selectOption = document.querySelectorAll('option');
 
-
+let qrInput  = document.querySelector('.qr-input')
 let uri = `http://api.qrserver.com/v1/create-qr-code/?data=`
+let featureList = []; // Features List to store all features parameter 
 
-let featureList = []; // Features List to store all features parameter
+qrInput.addEventListener('keyup', inputEmptyFill); 
+
+// Check disable if qrInput is empty or fill
+function inputEmptyFill(){
+    // disabled button if input is empty
+    if (qrInput.value === ''){
+       qrCodeBtn.disabled = true;
+    }
+    // enabled buuton if input is filled
+    else {
+        qrCodeBtn.disabled = false;
+    }
+}
 
 function createQRCode(){
-    qrCodeInput = document.querySelector('.qr-input').value; // Get data from the user to code as QR Code
+    qrCodeInput = qrInput.value; // Get data from the user to code as QR Code
     let qrCodeUri = `${uri}${qrCodeInput}&size=250x250`;
-
+    
     featureList.push(qrCodeInput); // Adding data into the feature list
-
-    //let uriWithMargin = qrCodeUri.concat('&margin=40', '&color=f00');
     qrCodeImgEl.src = qrCodeUri; // Generating QR Code Image 
 }
 
@@ -62,34 +74,41 @@ function InputColor(event){
     qrCodeImgEl.src += colorChange; // Set the QR Code image color immediately when color is selected from the color palette
 }
 
-// Select what type of file format the QR Code image should be saved with
-fileTypeSelect.addEventListener('click', (e)=>{
-    
-    const fileType = e.target.value;
-    if (fileType === 'png' || 'jpeg' || 'svg'){
-        console.log(fileType);
-        featureList.push(fileType); // Add selected file format into the feature list
-    }
+selectOption.forEach((option) =>{
+    // Select what type of file format the QR Code image should be saved with
+    option.addEventListener('click', (e)=>{
+        console.log(e.target.value);
+        const fileType = e.target.value;
+        let fileTypePara = '&format=' + fileType;
+        featureList.push(fileTypePara) // Add selected file format into the feature list
+
+    })
 })
+
+
 downloadBtn.addEventListener('click', ()=>{
     featureList.map((feature) =>{
     uri += feature;
     })
     console.log(uri);
-    download('QR-code', uri);
+    download(uri);
  
     featureList = [];
     console.log(featureList);
 })
 
 // Download QR Image function
-function download(fileName, text){
+function download(text){
+    // link element was created and attributes was added to the link 
     const linkEl = document.createElement('a');
     linkEl.className = 'download-link';
     linkEl.setAttribute('href',  text);
-    linkEl.setAttribute('download', fileName);
+    linkEl.setAttribute('download', 'qr-code');
 
     downloadBtn.appendChild(linkEl);
+    linkEl.click();
+    //downloadBtn.removeChild(linkEl);
+
 }
 
 

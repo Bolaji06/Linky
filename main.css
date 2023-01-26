@@ -376,10 +376,7 @@ nav a:hover{
     
     
 }
-.qr-image{
-    
-  
-}
+
 .worspace-wrapper{
     display: flex;
     justify-content: center;
@@ -430,6 +427,10 @@ nav a:hover{
     background-color: var(--pale-black);
     border-radius: 20px;
     cursor: pointer;
+}
+.qr-btn:disabled{
+    background-color: rgb(151, 151, 151);
+    cursor: default;
 }
 .download-link{
     text-decoration: none;
